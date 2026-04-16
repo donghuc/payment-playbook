@@ -1,0 +1,40 @@
+{
+  "name": "payment-playbook",
+  "version": "1.0.0",
+  "description": "Five decision-support Claude skills for B2C payment strategy — revenue model selection, pricing architecture, checkout UX, churn diagnosis, and discount planning.",
+  "main": "bin/install.js",
+  "bin": {
+    "payment-playbook": "bin/install.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "keywords": [
+    "claude",
+    "claude-skills",
+    "payment",
+    "payment-strategy",
+    "monetization",
+    "pricing",
+    "b2c",
+    "saas",
+    "southeast-asia",
+    "sea"
+  ],
+  "author": {
+    "name": "donghuc",
+    "url": "https://github.com/donghuc"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donghuc/payment-playbook.git"
+  },
+  "homepage": "https://github.com/donghuc/payment-playbook",
+  "bugs": {
+    "url": "https://github.com/donghuc/payment-playbook/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

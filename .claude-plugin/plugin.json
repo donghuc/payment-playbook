@@ -1,0 +1,9 @@
+{
+  "name": "payment-playbook",
+  "version": "1.0.0",
+  "description": "Five decision-support skills for B2C payment strategy — revenue model selection, pricing architecture, checkout UX, churn diagnosis, and discount planning. Built for product managers, business development leads, and product designers working in SEA, Europe, and global markets.",
+  "author": {
+    "name": "donghuc",
+    "url": "https://github.com/donghuc/payment-playbook"
+  }
+}
