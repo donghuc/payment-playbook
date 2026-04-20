@@ -36,4 +36,31 @@ When a claim in any knowledge base file is verified against primary sources and 
 
 ---
 
+## Round 2 — April 2026 Audit Corrections
+
+A subsequent audit surfaced inaccuracies in prior corrections (Round 1). These were re-verified against primary sources (Adyen docs, GoCardless pricing page, Stripe global availability) and corrected. The following entries supersede or revise earlier rows above.
+
+| File | Claim | Prior (incorrect) | Corrected | Source / Notes | Date |
+|------|-------|-------------------|-----------|----------------|------|
+| Gateways — Stripe | Merchant country list | Philippines listed as fully supported | Philippines NOT supported as of April 2026 (plans announced, not launched). VN also not supported. Indonesia in preview/invite-only. | [Verified — stripe.com/global] | Apr 2026 |
+| SEA markets | NAPAS recurring via Adyen | "Supported — Subscription contract type" | NOT supported. Adyen NAPAS docs explicitly show Recurring = not supported. Prior correction was wrong. | [Verified — docs.adyen.com/payment-methods/napas-card] | Apr 2026 |
+| SEA markets | GCash recurring via Adyen | Implied broad Adyen support | NOT supported via Adyen. Supported via PayMongo, Xendit, and Ezypay partnership. Wallet × gateway distinction matters. | [Verified — docs.adyen.com/payment-methods/gcash] | Apr 2026 |
+| SEA markets | GrabPay recurring via Adyen | "Supported via tokenization for approved merchant integrations" | NOT supported via Adyen. Direct Grab partnership required for wallet-level recurring. | [Verified — docs.adyen.com/payment-methods/grabpay] | Apr 2026 |
+| SEA markets | Touch 'n Go recurring via Adyen | "Supported via recurring subscription feature (launched via Curlec partnership). Available via 2C2P and Adyen." | NOT supported via Adyen. Curlec partnership exists but is a separate path — verify currency before relying. | [Verified — docs.adyen.com/payment-methods/touchngo] | Apr 2026 |
+| SEA markets | VNPay Auto-Debit for SaaS | Presented as broadly usable for SaaS recurring | Auto-debit exists for utilities/bills; general SaaS subscription use is not clearly documented publicly. Treat as unsupported for SaaS unless verified per integration. | [Estimated — no authoritative public documentation for SaaS-ready VNPay Auto-Debit] | Apr 2026 |
+| Gateways — GoCardless | EU SEPA fee cap | €4 | €2 (Standard plan) / €2.50 (Advanced plan). €4 figure does not match GoCardless's own published rate card. | [Verified — gocardless.com/pricing-eu] | Apr 2026 |
+| Freemium model | Spotify conversion label | "~40% conversion" | Clarified as *premium-to-MAU ratio*, not a per-period conversion rate. ~39–40% at Q3 2025 (281M / 713M). Quarterly free-to-paid conversion is ~5%. | [Verified — Spotify Q3 2025 earnings] | Apr 2026 |
+| Freemium model | Benchmark tagging | Numbers presented as facts | All benchmarks now tagged [Verified]/[Estimated]/[Case-study] with denominator stated. | Principle applied per `_principles/payment-reality.md` | Apr 2026 |
+| Reverse trial model | Conversion benchmarks (4–6% / 8–12% / 15–30%) | Presented as "general SaaS benchmarks" | Reframed as case-study data — public benchmark datasets for reverse trial are thin. Operator-reported figures only. | [Case-study] | Apr 2026 |
+| All files | Capability classification | Binary supports/doesn't-support | Introduced four-level taxonomy: Native / Token-based / User-approved / Not supported. See `_principles/payment-reality.md`. | — | Apr 2026 |
+
+### Key takeaways from Round 2
+
+- The Round 1 corrections on SEA wallet recurring were in several cases *over*-corrected — the pattern "SEA wallets support recurring via Adyen" was too broad. Adyen supports GoPay recurring but not GCash / GrabPay / Touch 'n Go / NAPAS recurring as of April 2026.
+- The wallet-vs-gateway distinction is load-bearing. A wallet may support recurring natively while a given gateway has not implemented it. Always validate at the wallet × gateway × market intersection.
+- Stripe's Philippines status was misstated in Round 1 (and in this knowledge base). Stripe has not yet launched PH as a merchant country.
+- Benchmark numbers should carry tags (`[Verified]` / `[Estimated]` / `[Case-study]`) and denominators. The `_principles/payment-reality.md` file documents the tagging scheme.
+
+---
+
 *Last updated: April 2026*

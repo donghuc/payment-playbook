@@ -37,7 +37,13 @@ Cost    = (Total Users × Cost per User) + Fixed Costs
 
 The sustainability of freemium depends on three levers:
 
-**1. Conversion rate** — Industry benchmarks for B2C freemium vary widely. Spotify converts approximately **~40%** of monthly active users to paid Premium (290M premium / ~700M+ MAUs as of Q4 2025 — the often-cited 26–30% figure is outdated, from pre-2021 data). Dropbox's conversion has been historically cited at ~2–4% (S-1 filing era); current estimates put it closer to ~2–2.5% (FY2023: ~17.77M paying users). Most B2C SaaS products fall in the **2–8%** range. The wide variance reflects product type, free tier design, and upgrade trigger quality.
+**1. Conversion rate** — Industry benchmarks for B2C freemium vary widely.
+
+- **Spotify:** ~39–40% of monthly active users are paid Premium subscribers (281M premium / ~713M total users as of Q3 2025; Spotify projected ~289M premium by year-end 2025). [Verified — Spotify Q3 2025 earnings]. Note: this is the *premium-to-MAU ratio*, not a quarterly free-to-paid conversion rate — those are different metrics. Spotify's quarterly free-to-paid conversion rate is approximately 5% (per industry analysis). The "40%" figure that circulates widely refers to the *cumulative outcome* of the funnel, not a per-period conversion rate.
+- **Dropbox:** ~18M paying users as of 2024–2025 [Verified — Dropbox investor reports]. Historical free-to-paid conversion was cited at ~2–4% at S-1 (2017–2018); current estimates are ~2–2.5% [Estimated — Dropbox does not publicly disclose current conversion rate].
+- **Most B2C SaaS:** 2–8% free-to-paid conversion [Estimated — industry benchmark ranges, varies significantly by product type, free tier design, and upgrade trigger quality].
+
+**Important denominator caveat:** "Conversion rate" is meaningless without specifying the denominator (signups, MAUs, registered accounts?) and the time window (per-period, cumulative, lifetime-of-cohort?). When citing any of the above, state the denominator explicitly to avoid comparing apples to oranges.
 
 **2. Cost per free user** — If your product is compute or storage-heavy, free users can be loss-making. If your marginal cost per additional user is near zero (pure software, no AI generation, no heavy infra), the model is viable even at low conversion. AI-powered B2C products have fundamentally different economics here — every free user action has a real cost.
 
@@ -63,19 +69,19 @@ Freemium performs poorly in B2C when:
 ## Real World Examples
 
 **Spotify**
-Free tier: Full music library, shuffle-only on mobile, ads. Paid tier: On-demand playback, offline, no ads. Conversion: ~**40%** of monthly active users as of 2025 (290M premium subscribers out of ~700M+ MAUs). The free tier is genuinely enjoyable but with deliberate friction (shuffle, ads) that increases in salience as users develop listening habits. Spotify Wrapped is the most effective viral loop in consumer SaaS — a shareable annual report that makes free users advocates.
+Free tier: Full music library, shuffle-only on mobile, ads. Paid tier: On-demand playback, offline, no ads. Premium-to-total-user ratio: **~39–40%** as of late 2025 (281M premium / ~713M total users at Q3 2025 [Verified — Spotify earnings]). This is the *stock ratio*, not a conversion rate — Spotify's quarterly free-to-paid conversion is closer to ~5%. The free tier is genuinely enjoyable but with deliberate friction (shuffle, ads) that increases in salience as users develop listening habits. Spotify Wrapped is the most effective viral loop in consumer SaaS — a shareable annual report that makes free users advocates.
 
 **Duolingo**
-Free tier: Full language learning curriculum, unlimited lessons, but with ads and a "hearts" system that limits mistakes per day. Paid tier (Super Duolingo): No ads, unlimited hearts, offline mode. Conversion: Estimated 8–10%. The habit loop (streaks, notifications, social leaderboards) is built into the free tier. The upgrade trigger is frustration with losing hearts, not a feature ceiling.
+Free tier: Full language learning curriculum, unlimited lessons, but with ads and a "hearts" system that limits mistakes per day. Paid tier (Super Duolingo): No ads, unlimited hearts, offline mode. Conversion: 8–10% [Estimated — based on investor disclosures and industry analysis, not a figure Duolingo publishes as a single headline number]. The habit loop (streaks, notifications, social leaderboards) is built into the free tier. The upgrade trigger is frustration with losing hearts, not a feature ceiling.
 
 **Canva**
-Free tier: Core design tools, limited template access, limited premium elements. Paid tier: Full template library, brand kits, background remover, more storage. Conversion: Estimated 5–10% (Canva is private and does not disclose conversion rates — this is an industry estimate). Every premium element is watermarked and clearly labelled in the editor, creating consistent, low-friction upgrade prompts during normal product use.
+Free tier: Core design tools, limited template access, limited premium elements. Paid tier: Full template library, brand kits, background remover, more storage. Conversion: 5–10% [Estimated — Canva is private and does not disclose conversion rates; industry estimate only]. Every premium element is watermarked and clearly labelled in the editor, creating consistent, low-friction upgrade prompts during normal product use.
 
 **Notion**
 Free tier: Unlimited personal pages, limited collaboration (up to 10 guests). Paid tier: Unlimited collaboration, version history, advanced permissions. The free tier is extremely generous for individual use, driving high adoption. Conversion happens naturally when users try to collaborate with teams.
 
 **Dropbox**
-Free tier: 2GB storage. Paid tier: 2TB+ storage. Conversion historically cited at ~2–4% (S-1 filing era, 2017–2018); current estimates are closer to ~2–2.5% (FY2023: ~17.77M paying users). At hundreds of millions of registered users, even 2% is commercially significant. The upgrade trigger is purely hitting the storage ceiling — a natural and non-arbitrary moment.
+Free tier: 2GB storage. Paid tier: 2TB+ storage. Paying users: ~18M as of 2024–2025 [Verified — Dropbox investor reports]. Conversion historically cited at ~2–4% (S-1 filing era, 2017–2018); current conversion is ~2–2.5% [Estimated — Dropbox does not publicly disclose current conversion rate]. At hundreds of millions of registered users, even 2% is commercially significant. The upgrade trigger is purely hitting the storage ceiling — a natural and non-arbitrary moment.
 
 ---
 

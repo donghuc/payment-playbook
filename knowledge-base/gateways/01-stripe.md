@@ -24,7 +24,15 @@ Founded in 2010, Stripe is available to merchants in 47+ countries. It processes
 ## Market & Method Coverage
 
 ### Merchant availability (where you can create a Stripe account):
-Australia, Austria, Belgium, Brazil, Bulgaria, Canada, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Ghana, Gibraltar, Greece, Hong Kong, Hungary, India, Indonesia, Ireland, Italy, Japan, Latvia, Liechtenstein, Lithuania, Luxembourg, Malaysia, Malta, Mexico, Netherlands, New Zealand, Nigeria, Norway, Philippines, Poland, Portugal, Romania, Singapore, Slovakia, Slovenia, Spain, Sweden, Switzerland, Thailand, United Arab Emirates, United Kingdom, United States.
+
+**Fully supported (self-serve signup, as of April 2026) [Verified — stripe.com/global]:**
+Australia, Austria, Belgium, Brazil, Bulgaria, Canada, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Ghana, Gibraltar, Greece, Hong Kong, Hungary, India, Ireland, Italy, Japan, Latvia, Liechtenstein, Lithuania, Luxembourg, **Malaysia**, Malta, Mexico, Netherlands, New Zealand, Nigeria, Norway, Poland, Portugal, Romania, **Singapore**, Slovakia, Slovenia, Spain, Sweden, Switzerland, **Thailand**, United Arab Emirates, United Kingdom, United States.
+
+**Preview / invite-only (sales approval required):** Indonesia.
+
+**Not supported as a merchant country (as of April 2026):** Philippines, Vietnam. Stripe has announced plans to launch in the Philippines (and invested in PayMongo in 2020) but full merchant onboarding is not yet live. Businesses in these markets typically incorporate in a Stripe-supported country (US, UK, SG) to access Stripe; alternatively, use a local gateway (PayMongo for PH; MoMo/2C2P for VN).
+
+**Correction note (April 2026):** A previous version of this document listed Philippines as a fully supported Stripe merchant country. That was incorrect.
 
 ### Payment methods by region (as of 2025–2026):
 
@@ -34,8 +42,8 @@ Visa, Mastercard, American Express, Discover, Apple Pay, Google Pay, PayPal, Lin
 **Europe:**
 SEPA Direct Debit, iDEAL, Bancontact, SOFORT/Klarna, Klarna (BNPL), BLIK, Przelewy24, Swish, Giropay, EPS (Austria), Multibanco (Portugal), MB WAY (Portugal)
 
-**Southeast Asia:**
-GrabPay (Singapore, Malaysia), PayNow (Singapore), FPX (Malaysia), PromptPay (Thailand), GoPay (Indonesia), OVO (Indonesia), Dana (Indonesia), QRIS (Indonesia), GCash (Philippines), Maya (Philippines)
+**Southeast Asia (method availability depends on merchant country):**
+GrabPay (Singapore, Malaysia), PayNow (Singapore), FPX (Malaysia), PromptPay (Thailand), GoPay (Indonesia, preview), OVO (Indonesia, preview), Dana (Indonesia, preview), QRIS (Indonesia, preview). GCash and Maya (Philippines) can be displayed to paying customers by merchants in supported countries, but Philippines is not a Stripe merchant country, so local PH merchants cannot onboard.
 
 **Others:**
 WeChat Pay, Alipay, ACH Direct Debit (US), Canadian pre-authorised debit, OXXO (Mexico), Boleto (Brazil)
@@ -56,8 +64,7 @@ WeChat Pay, Alipay, ACH Direct Debit (US), Canadian pre-authorised debit, OXXO (
 | SG | 3.4% + S$0.50 | |
 | MY | 3.4% + MYR 2.00 | |
 | TH | 3.65% | |
-| ID | 3.4% + IDR 2,000 | |
-| PH | 3.5% + PHP 15 | |
+| ID | 3.4% + IDR 2,000 | Preview/invite-only market |
 
 **Additional fees:**
 - International card surcharge: +1.5% for cards issued outside the processing country

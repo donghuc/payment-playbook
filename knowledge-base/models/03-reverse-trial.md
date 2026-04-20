@@ -47,7 +47,14 @@ Cost    = (Signups × Cost per User) + Free Tier Ongoing Cost + Fixed Costs
 
 **Top-of-funnel:** Broad, comparable to freemium, since no card is required. Significantly wider than traditional free trial.
 
-**Post-trial conversion rate:** Higher than cold freemium (where users start limited and must imagine the value of paid), because reverse trial users have directly experienced what they're being asked to pay for. Empirical benchmarks are less standardised than for traditional trials. General SaaS benchmarks put reverse trial at **4–6% (good) and 8–12% (great)**. Top-performing products like Loom and Airtable have reported **15–30%** conversion — but these represent exceptional implementations in products with strong premium differentiation and fast time-to-value. The 15–25% range cited in industry case studies should be treated as top-performer territory, not a typical outcome. For most B2C SaaS, 8–15% is a realistic target for a well-executed reverse trial, which still meaningfully outperforms cold freemium (2–8%). These figures should be treated as directional ranges — product fit and trial window design are the dominant variables.
+**Post-trial conversion rate [Case-study — not a validated market benchmark]:** Reverse trial conversion data is **not well established in public benchmark datasets**. Most publicly cited figures come from operator anecdotes, blog posts, and single-company case studies — not from aggregated industry research. Treat all numbers in this section as directional, not authoritative.
+
+Commonly cited reverse trial conversion figures (operator-reported, not verified by third-party benchmarks):
+- Typical: 4–6% [Case-study]
+- Strong: 8–12% [Case-study]
+- Top-performer (Loom, Airtable cited): 15–30% [Case-study — these are outlier results in products with strong premium differentiation and fast time-to-value]
+
+For most B2C SaaS, 8–15% is a plausible target for a well-executed reverse trial, likely higher than cold freemium (2–8%). But these figures are not a market benchmark in the same sense that Stripe or Mollie's pricing is a market benchmark — they are patterns observed in operator writeups. If reverse trial conversion is a load-bearing input to your business plan, validate against your own product's cohort data rather than relying on these ranges.
 
 **Ongoing free tier cost:** Unlike traditional free trial where non-converters disappear, reverse trial retains a free tier user base with ongoing infra costs. The cost dynamics are similar to freemium, but the user cohort is better activated — they've completed a full premium experience and are more likely to convert on future touchpoints (seasonal promotions, feature launches, price changes).
 

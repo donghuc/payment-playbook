@@ -54,7 +54,7 @@ Covers the eight fundamental B2C revenue model archetypes, each with mechanics, 
 
 **Key insight for Europe:** Tiered Subscription with SEPA Direct Debit is the most cost-efficient recurring revenue structure.
 
-**Fact-check note:** Conversion rate benchmarks were verified in April 2026. Spotify's conversion rate is ~40% (not the often-cited 26–30%). Dropbox is ~2–2.5% (not 4%). Free trial card-capture conversion is 25–50% for optimised products (not 40–60%). Reverse trial benchmark is 8–12% for most products, 15–25% for top performers.
+**Fact-check note:** Conversion rate benchmarks were revised twice in April 2026. Spotify's ~40% is the *premium-to-MAU ratio* [Verified, Q3 2025: 281M/713M], not a per-period conversion rate — quarterly free-to-paid conversion is closer to ~5%. Dropbox is ~2–2.5% [Verified, FY2023]. Free-trial card-capture conversion is 25–50% for optimised products (not 40–60%) [Estimated]. Reverse-trial figures (4–6% / 8–12% / 15–30%) are [Case-study] only — public benchmark datasets for reverse trial are thin. See `_principles/payment-reality.md` for the tagging scheme.
 
 ---
 
@@ -93,17 +93,23 @@ The most technically nuanced pillar. Documents every significant payment method 
 | `markets/02-europe.md` | EU cards, SEPA, iDEAL, Bancontact, SOFORT/Klarna, BLIK, Swish/Vipps MobilePay, Apple/Google Pay |
 | `markets/03-global.md` | Cards, PayPal, Apple Pay, Google Wallet, WeChat Pay/Alipay, Crypto |
 
-**The most important structural finding:** The framing of "most SEA payment methods don't support recurring billing" is an oversimplification. The correct picture:
+**The most important structural finding:** The framing of "most SEA payment methods don't support recurring billing" is an oversimplification — but the opposite oversimplification ("most wallets support recurring via Adyen") is also wrong. The correct picture requires resolving at the **wallet × gateway × market** intersection:
 
 - **QR payments** (QRIS, PromptPay, VNPay-QR, PayNow QR): ❌ One-time by design
 - **Virtual Accounts, bank transfers, OTC cash**: ❌ One-time by design
-- **Major e-wallets** (GCash, MoMo, GoPay, Touch 'n Go, ZaloPay): ⚠️ **Do support recurring** via tokenization/account-linking APIs — but each requires separate merchant integration and (in some cases) merchant pre-approval. Not unified like card-on-file.
-- **NAPAS domestic cards** (Vietnam): ✅ Support tokenization and recurring billing via Adyen
-- **VNPay Auto-Debit** (Vietnam): ✅ Documented auto-debit utility for periodic billing
+- **GoPay** (Indonesia): ✅ Recurring supported via Midtrans and Adyen (Subscription/CardOnFile)
+- **GCash** (Philippines): ⚠️ Recurring via PayMongo, Xendit, Ezypay partnership — **NOT via Adyen**
+- **Touch 'n Go** (Malaysia): ⚠️ Recurring via Curlec partnership — **NOT via Adyen**
+- **GrabPay** (multi-market): ⚠️ Recurring requires direct Grab partnership — **NOT via Adyen**
+- **NAPAS domestic cards** (Vietnam): ❌ Recurring **not supported via Adyen** (prior claim was incorrect)
+- **VNPay Auto-Debit** (Vietnam): ⚠️ Documented for utilities/bills; general SaaS-recurring use is not clearly documented publicly — verify per integration
+- **MoMo** (Vietnam): ✅ Recurring via MoMo's Thanh Toán Tự Động API
 
 The implementation complexity of wallet-by-wallet tokenization is real — which is why App Store/Google Play IAP remains the path of least resistance for mobile products.
 
-**Fact-check note:** SEA recurring billing support was substantially corrected in April 2026. Europe: SEPA now covers 41 countries (not 36). UK participates in SEPA schemes. BLIK has 18.9M active users (not 15M). BLIK Recurring is a live product, not a pilot. Vipps MobilePay has 12M+ users across 4 Nordic countries after the 2022 Vipps–MobilePay merger.
+> **Read this first:** [`_principles/payment-reality.md`](./_principles/payment-reality.md) — seven load-bearing principles for working with recurring claims (wallet ≠ gateway, capability taxonomy, tagging scheme, verify-before-commit).
+
+**Fact-check note:** Round 1 of the April 2026 audit over-corrected SEA wallet recurring claims by attributing broad "via Adyen" support. Round 2 re-verified against Adyen's per-method docs and corrected NAPAS, GCash, GrabPay, and Touch 'n Go. Stripe Philippines was also corrected — plans announced, not yet launched (as of April 2026). Europe: SEPA now covers 41 countries (not 36). UK participates in SEPA schemes. BLIK has 18.9M active users (not 15M). BLIK Recurring is a live product, not a pilot. Vipps MobilePay has 12M+ users across 4 Nordic countries after the 2022 Vipps–MobilePay merger.
 
 ---
 
@@ -211,6 +217,9 @@ Read `markets/02-europe.md` for the full method landscape and regulatory context
 Payment Strategy/
 │
 ├── README.md                          ← This document
+├── fact-check-log.md                  ← Running record of corrections
+├── _principles/
+│   └── payment-reality.md             ← Load-bearing principles (read first)
 │
 ├── revenue-models.md                  ← Pillar 1 index
 ├── models/

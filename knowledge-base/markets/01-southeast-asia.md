@@ -12,7 +12,7 @@ Southeast Asia is the most fragmented payment landscape in the world. Six major 
 
 1. **Card penetration is low outside Singapore and Malaysia.** In Indonesia, Vietnam, and the Philippines, a significant portion of the adult population is unbanked or card-free. Building a SaaS product that requires a credit card for subscription will exclude the majority of potential users in these markets.
 
-2. **Recurring billing is supported by major wallets — but via tokenization, not simple card-on-file.** The picture here is more nuanced than a blanket "SEA methods don't support recurring." Most major e-wallets (GoPay, GCash, MoMo, Touch 'n Go, ZaloPay) and domestic card networks (NAPAS) do support recurring billing, but via **tokenization and account-linking APIs**, not the same card-on-file flow used by Visa/Mastercard. This means: (a) the merchant must implement a separate integration flow per wallet, (b) some wallets require merchant category approval or pre-registration, and (c) the implementation complexity is meaningfully higher than card recurring. QR payments, virtual accounts, and bank transfers remain genuinely one-time only by design.
+2. **Recurring billing in SEA is inconsistent and provider-specific.** The picture is more nuanced than either "SEA supports recurring" or "SEA doesn't support recurring." A subset of wallets support genuine recurring billing — specifically **GoPay (via Midtrans/Adyen), MoMo (via MoMo's own developer API), and GCash (via PayMongo/Xendit/Ezypay partnership)** — but each requires a separate integration path and the wallet × gateway combination matters. Other wallets commonly assumed to support recurring do not: **GrabPay, Touch 'n Go, and NAPAS domestic cards have recurring explicitly marked as unsupported in Adyen's integration documentation as of Apr 2026 [Verified].** The practical implications: (a) recurring capability must be validated at the wallet × gateway intersection, not at the wallet level alone, (b) the gateway you use for cards may not be the gateway that offers a given wallet's recurring capability, and (c) "this wallet supports recurring" usually means "via a specific gateway or the wallet operator's own APIs, with merchant onboarding." QR payments, virtual accounts, and bank transfers remain genuinely one-time only by design.
 
 3. **The App Store and Google Play remain the path of least resistance for mobile.** Apple and Google abstract away the wallet-by-wallet tokenization complexity entirely. For mobile-first products, IAP is still the easiest path to reliable recurring revenue across all SEA markets — at the cost of platform commission (15–30%).
 
@@ -52,9 +52,9 @@ Access granted / order confirmed
 
 **Adoption:** High among Grab users. Less dominant than PayNow for pure payment use cases.
 
-**Recurring support:** ⚠️ Supported via tokenization for approved merchant integrations. GrabPay supports account-linking and recurring billing; available via Adyen for merchants with Grab partnership approval. Not broadly self-serve for smaller SaaS merchants.
+**Recurring support:** ❌ **Not supported via Adyen** (Adyen's GrabPay integration documentation explicitly shows Recurring = not supported, April 2026 [Verified]). GrabPay does have an account-linking / recurring capability at the wallet level in some markets, but it is not exposed through Adyen's standard GrabPay integration and requires a direct Grab merchant partnership to access. For most SaaS merchants, treat GrabPay as a one-time wallet unless a direct Grab partnership is in scope. [Estimated — direct-partnership availability subject to verification]
 
-**B2C SaaS note:** Viable for one-time purchases and top-ups. Recurring requires Grab merchant partnership approval — feasible at scale, not on day one.
+**B2C SaaS note:** Viable for one-time purchases and top-ups. Do not plan monthly recurring billing on GrabPay without confirming a direct Grab partnership path first.
 
 ### NETS
 **What it is:** Singapore's local debit payment network, primarily used for point-of-sale transactions. NETS QR exists for online and mobile payments.
@@ -74,7 +74,7 @@ Malaysia has relatively high card penetration for SEA. Credit and debit cards (V
 
 **Adoption:** Very high — one of Malaysia's most widely used payment apps.
 
-**Recurring support:** ⚠️ **Supported** via recurring subscription feature (launched via Curlec partnership). TnG eWallet formally supports subscription and recurring billing for merchants. Available via 2C2P and Adyen integrations. The account-linking tokenization flow is documented. Requires merchant API integration — not available as a simple on/off toggle.
+**Recurring support:** ⚠️ Gateway-dependent and not broadly available. **Adyen's Touch 'n Go integration does NOT support recurring** (Recurring explicitly marked unsupported in Adyen feature table, April 2026 [Verified]). A TnG–Curlec partnership enabling subscription/recurring billing has been reported; verify the current status of that partnership and the specific gateway path before relying on it. [Estimated — Curlec partnership status requires verification]
 
 **UX flow:**
 ```
@@ -89,7 +89,7 @@ Callback to merchant on success
 Access granted — subsequent charges auto-deducted
 ```
 **Gateway support:** Stripe (Malaysia), Xendit, 2C2P, iPay88, Adyen.
-**B2C SaaS note:** TnG recurring is viable for Malaysian subscribers — implement via 2C2P or Adyen, not Stripe's basic TnG integration which may be one-time only.
+**B2C SaaS note:** For Malaysian recurring billing, do not assume TnG recurring is available by default. Adyen's integration is one-time. Verify with 2C2P or with Curlec directly if TnG recurring is a required path. For most SaaS merchants, use TnG for one-time/annual payments and rely on card-on-file or App Store IAP for monthly recurring.
 
 ### DuitNow
 **What it is:** Malaysia's national real-time payment scheme, equivalent to Singapore's PayNow. Bank-to-bank transfers via mobile number or IC number. DuitNow QR is Malaysia's standardised QR payment system, accepted by all major Malaysian banks.
@@ -260,14 +260,14 @@ Subsequent charges: merchant-initiated, auto-deducted, user notified
 
 **Adoption:** Extremely high for QR-based payments. VNPay-QR is scanned from virtually any Vietnamese bank app.
 
-**Recurring support:** ⚠️ **Partially supported — depends on payment flow used.** Two distinct VNPay capabilities exist:
-- **VNPay-QR (push QR):** ❌ One-time only by design. The user scans and approves each payment individually.
-- **VNPay Payment Gateway with Auto-Debit:** ✅ VNPay has a documented "Automatic Debit Utility" allowing merchants to auto-charge customers after initial authorisation. Supports periodic (monthly) billing. Also supports installment payments with monthly recurring frequency.
+**Recurring support:** ⚠️ **Partial — and SaaS use is not well documented.**
+- **VNPay-QR (push QR):** ❌ One-time only by design. The user scans and approves each payment individually. [Verified]
+- **VNPay Auto-Debit:** Exists and is deployed for specific use cases (utility bills, insurance, education fees, some telcos). **General-purpose SaaS subscription billing via VNPay Auto-Debit is not clearly documented in public VNPay API sources as of April 2026.** [Estimated — treat as unsupported for SaaS unless verified per integration with VNPay directly.]
 
-For B2C SaaS recurring billing, the VNPay Payment Gateway auto-debit path is viable — but it is a distinct integration from the QR flow, requires merchant registration with VNPay, and is not universally available via all gateway partners.
+For B2C SaaS recurring billing, do not plan around VNPay Auto-Debit without first confirming eligibility with VNPay's merchant onboarding team. The capability exists in the VNPay ecosystem but is not a self-serve SaaS-ready rail in the same way MoMo's Subscription API is.
 
 **Gateway support:** VNPay is itself a gateway. Also integrated in 2C2P, OnePay, PayOS.
-**B2C SaaS note:** VNPay-QR is essential for one-time and annual payments. For monthly recurring, integrate VNPay's auto-debit feature directly or via OnePay/2C2P where available. Do not assume QR capability = recurring capability.
+**B2C SaaS note:** VNPay-QR is essential for one-time and annual payments. For monthly recurring in Vietnam, MoMo's Subscription API is the more documented and SaaS-viable path — not VNPay Auto-Debit. Do not assume QR capability = recurring capability.
 
 ### ViettelPay
 **What it is:** Viettel's digital wallet and payment platform. Viettel is Vietnam's largest telecom operator. ViettelPay benefits from Viettel's mobile subscriber base and physical agent network.
@@ -282,13 +282,11 @@ For B2C SaaS recurring billing, the VNPay Payment Gateway auto-debit path is via
 
 **Adoption:** High, particularly for higher-value transactions.
 
-**Recurring support:** ⚠️ **Partially supported — depends on instrument used.** NAPAS operates as both a transfer network and a domestic card network. Two distinct cases:
-- **NAPAS bank transfers / QR:** ❌ One-time push payments. No recurring.
-- **NAPAS domestic debit/ATM cards (chip cards issued by Vietnamese banks):** ✅ Support tokenization and recurring billing. Adyen's NAPAS card integration explicitly supports Subscription contract type. NAPAS's own documentation references "tokenization" and "automatic periodic money collection" as supported capabilities.
+**Recurring support:** ❌ **Not supported via Adyen — corrected April 2026.** NAPAS operates as both a transfer network and a domestic card network. In both cases, the recurring capability is limited:
+- **NAPAS bank transfers / QR:** ❌ One-time push payments. No recurring. [Verified]
+- **NAPAS domestic debit/ATM cards:** ❌ **Adyen's NAPAS card integration documentation explicitly shows Recurring = not supported** (feature table, April 2026) [Verified]. Earlier claims in this knowledge base that NAPAS cards support Subscription via Adyen were incorrect. NAPAS's own scheme documentation does reference tokenization primitives, but a production-grade gateway path to SaaS-ready NAPAS recurring does not exist as of April 2026.
 
-This is an important distinction: NAPAS the transfer scheme is one-time; NAPAS domestic cards behave like debit cards with tokenization support for subscription billing via appropriate gateways (Adyen primarily).
-
-**B2C SaaS note:** For Vietnam recurring billing via NAPAS cards, the gateway path is Adyen (confirmed NAPAS card + subscription recurring support). Not available via Stripe's Vietnam integration at the same level. This is a viable path for the segment of Vietnamese users who have NAPAS chip cards.
+**B2C SaaS note:** For Vietnam recurring billing, NAPAS cards are NOT a viable rail via Adyen. The documented, SaaS-viable Vietnam recurring path is **MoMo's Subscription API** (via MoMo direct integration, 2C2P, PayOS, or OnePay). For users without MoMo, fall back to international card-on-file (Visa/Mastercard) or App Store / Google Play IAP.
 
 ---
 
@@ -301,9 +299,9 @@ The Philippines has been one of the fastest-growing digital payment markets in S
 
 **Adoption:** Dominant. GCash is the primary financial tool for a large segment of the Philippine adult population.
 
-**Recurring support:** ⚠️ **Supported via GCash account linking.** GCash auto-debit for recurring subscriptions is confirmed working with major digital subscription services — Spotify, Netflix, Disney+, Google Play, Apple subscriptions all charge GCash on a recurring basis. Available for third-party merchants via PayMongo and Xendit. GCash Help Center explicitly documents subscription management (linking, unsubscribing).
+**Recurring support:** ⚠️ **Supported — but gateway-dependent.** GCash auto-debit for recurring subscriptions is confirmed working with major digital subscription services — Spotify, Netflix, Disney+, Google Play, Apple subscriptions charge GCash on a recurring basis. For third-party merchants, recurring GCash is available via **PayMongo, Xendit, and the Ezypay–GCash–Xendit partnership** (launched Nov 2024) [Verified]. **Adyen's GCash integration does NOT support recurring** (Adyen feature table, April 2026 [Verified]) — this is the key correction if your gateway plan assumed Adyen for SEA wallet recurring.
 
-The previous characterisation of "select billers (utilities, government) only" is inaccurate. GCash recurring is available for digital subscription merchants. The constraint is integration complexity and gateway support, not merchant category restriction.
+The previous characterisation of "select billers (utilities, government) only" is inaccurate. GCash recurring is available for digital subscription merchants. The constraints are integration complexity and specifically which gateway you use — not merchant category restriction.
 
 **UX flow (initial subscription):**
 ```

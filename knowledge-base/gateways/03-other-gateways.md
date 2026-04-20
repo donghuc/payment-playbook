@@ -103,13 +103,21 @@ In 2022, GoCardless acquired Nordigen, an Open Banking data platform, giving it 
 - **Australia / New Zealand:** BECS / Direct Debit
 - **Canada:** PAD (Pre-Authorised Debit)
 
-### Pricing
-- UK (BACS): 1% + 20p, capped at £4/transaction
-- EU (SEPA): 1% + €0.20, capped at €4/transaction
-- US (ACH): 1% + $0.25, capped at $4/transaction
-- Failed payment fee: £0.50 / €0.50 / $0.50
+### Pricing (Standard plan, as of April 2026 [Verified — gocardless.com/pricing-eu])
+- **UK (BACS):** 1% + 20p, capped at £2 domestic (Advanced plan: 1.25% + 20p, cap £2.50)
+- **EU (SEPA):** 1% + €0.20, capped at €2 domestic (Advanced plan: 1.25% + €0.20, cap €2.50)
+- **US (ACH):** 1% + $0.25, capped at $2.50 domestic
+- **International surcharge (cross-border):** +2% on Standard, +2.25% on Advanced
+- **Failed payment fee:** typically £0.50 / €0.50 / $0.50 (verify current rate card before quoting)
 
-At scale, GoCardless's SEPA Direct Debit pricing (max €4/transaction) is significantly cheaper than Stripe's SEPA (€0.80 flat for lower amounts but no cap, plus Billing fee). For high-value subscription products (annual plans at €200+), GoCardless is cost-advantageous.
+**Correction note (April 2026):** A previous version of this document cited a €4 cap for EU SEPA. GoCardless's own published Standard plan rate card shows a €2 cap; €4 appears on some third-party summaries but does not match the current GoCardless pricing page. If your strategy relied on the €4 figure, the unit economics are even more favourable than previously modelled.
+
+**Worked comparison vs. Stripe SEPA Direct Debit (€0.80 flat + 0.5% Stripe Billing fee on recurring revenue):**
+- €10/month charge: GoCardless 1% + €0.20 = **€0.30**. Stripe €0.80 + €0.05 = **€0.85**. GoCardless wins.
+- €100/month charge: GoCardless 1% + €0.20 = **€1.20**. Stripe €0.80 + €0.50 = **€1.30**. GoCardless narrowly wins.
+- €500 annual charge: GoCardless capped at **€2.00**. Stripe €0.80 + €2.50 = **€3.30**. GoCardless wins.
+
+GoCardless is generally cheaper once Stripe Billing fees are included, across both low-value monthly and high-value annual charges. If you self-build subscription logic on Stripe Payments (without Stripe Billing), the gap narrows substantially — model the comparison with your actual fee stack, not the headline per-transaction rate. Volume-negotiated rates on either platform can shift the comparison further.
 
 ### Why Direct Debit for SaaS
 Bank Direct Debit has structural advantages over card billing for subscriptions:
