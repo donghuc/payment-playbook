@@ -8,32 +8,52 @@ A skills library for B2C payment strategy decisions — built for product manage
 
 ## What This Is
 
-Payment Playbook bundles a fact-checked knowledge base (6 pillars, 40+ files, covering SEA and EU markets) with five Claude skills that help different people make different payment decisions without having to read every document.
+Payment Playbook bundles a fact-checked knowledge base (10 pillars, 80+ files, covering SEA and EU markets) with five Claude skills that help different people make different monetization and payment decisions without having to read every document.
 
 Each skill is grounded in the knowledge base, cites its sources with confidence tiers, and operates under shared guardrails that prevent it from filling gaps with unverified information.
+
+---
 
 ## The Skills
 
 | Skill | What it does | Who uses it |
 |---|---|---|
-| **Model Picker** | Chooses the right revenue model (freemium, trial, subscription, one-time, usage-based) for your product and market | PM, Monetization lead |
-| **Price Builder** | Designs tier structure, localised price points, annual/monthly framing, and anchoring strategy | PM, Monetization lead, BD |
+| **Model Picker** | Validates use case and persona fit first, then selects the right revenue model (freemium, trial, subscription, one-time, usage-based) for your product and market | PM, Monetization lead |
+| **Price Builder** | Checks research prerequisites (value metric, feature packaging, WTP), then designs tier structure, localised price points, annual/monthly framing, and anchoring strategy | PM, Monetization lead, BD |
 | **Checkout Builder** | Delivers screen-by-screen checkout flow specs with copy, legal requirements, and failure states | Product Designer, PM |
-| **Churn Fixer** | Diagnoses voluntary vs involuntary churn and routes to the right intervention (dunning or win-back) | PM, Monetization lead |
-| **Promo Planner** | Matches discount mechanics to business objectives, flags LTV risk, checks EU Omnibus compliance | BD Manager, Monetization lead |
+| **Churn Fixer** | Diagnoses voluntary vs involuntary churn, applies at-risk intervention strategies, and routes to the right recovery path (dunning or win-back) | PM, Monetization lead |
+| **Promo Planner** | Runs a Habit Formation check, matches discount mechanics to business objectives, evaluates NCM economics, flags LTV risk, and checks EU Omnibus compliance | BD Manager, Monetization lead |
+
+---
 
 ## The Knowledge Base
 
-The `knowledge-base/` folder contains a structured reference library covering:
+The `knowledge-base/` folder contains a structured reference library in two layers.
+
+### Layer 1 — Monetization Strategy Framework
+
+The upstream layer. Covers *what to monetize and why* — the strategic decisions that make all downstream execution coherent. Complete this layer before working on pricing, payment methods, or checkout UX.
+
+- **Pillar 0 — Foundation:** Use case framework, Monetization Triad (Consumer View × Growth Loops × Cost of Revenue), Revenue Equation, Model Friction
+- **Consumer Research:** Value metric research (Max-Diff), feature value research (2×2 Packaging Matrix), willingness-to-pay (Van Westendorp, Gabor-Granger)
+- **Revenue Analytics:** Revenue equation by model, new revenue cohorts, repeat revenue states (NRR), cost to serve and unit economics (Net Contribution Margin, Payback Period)
+- **Customer Lifecycle:** Customer state machine, educate → convert → activate transitions, expansion strategy, at-risk intervention, churned user win-back, incentives framework
+- **Pre-Launch Checklist:** 7-phase research gate before monetization goes live
+
+### Layer 2 — Payment Operations KB
+
+The execution layer. Covers *how to execute* — the payment infrastructure, UX flows, and operational systems that turn a monetization strategy into working revenue.
 
 - **Pillar 1 — Revenue Models:** 8 B2C model archetypes with verified conversion benchmarks
-- **Pillar 2 — Pricing Strategy:** Tier architecture, PPP localisation, SEA and EU price ranges, anchoring and framing
+- **Pillar 2 — Pricing Strategy:** Tier architecture, PPP localisation, SEA and EU price ranges, anchoring and framing, price testing methods
 - **Pillar 3 — Payment Methods by Market:** SEA (6 countries), Europe, Global — with recurring billing support status for every method
 - **Pillar 4 — Checkout UX:** 6 complete flow specifications including SEA wallet flows, mobile IAP, cancellation compliance
 - **Pillar 5 — Post-Payment Strategy:** Dunning sequences, subscription lifecycle, disputes, win-back, full metrics framework
-- **Pillar 6 — Discount Mechanisms:** 12 documented mechanics with churn risk ratings and LTV implications
+- **Pillar 6 — Discount Mechanisms:** 12 documented mechanics with churn risk ratings, LTV implications, and incentive guardrails
 
 Fact-checked: April 2026. See `knowledge-base/fact-check-log.md` for what was corrected.
+
+---
 
 ## Guardrails
 
@@ -45,6 +65,25 @@ All skills enforce the same rules defined in `GUARDRAILS.md`:
 - Time-sensitive information is flagged for freshness verification
 - Legal and compliance sections always route to qualified counsel
 - A decision-support disclaimer is displayed once at the start of every session
+
+---
+
+## When to Use Which Skill
+
+**Starting a new product or entering a new market:**
+Model Picker → Price Builder → Checkout Builder (in sequence; each skill validates prerequisites from the previous)
+
+**Struggling with conversion:**
+Model Picker (use case validation) → Price Builder (WTP check) → Checkout Builder (flow audit)
+
+**Struggling with retention:**
+Churn Fixer (diagnose voluntary vs involuntary) → Promo Planner (if win-back offer is needed)
+
+**Planning a promotion:**
+Promo Planner (Habit Formation check first, then mechanic selection, then NCM economics)
+
+**Expanding to a new market (SEA or EU):**
+Model Picker (market filter) → Price Builder (localisation) → Checkout Builder (market-specific flows)
 
 ---
 
