@@ -166,10 +166,14 @@ Benchmarks (B2C SaaS):
 ### Payback Period
 
 ```
-Payback period = CAC / (ARPU × gross margin)
+Payback period = CAC / (ARPU − Cost to Serve per month)
 
-If CAC = $30, ARPU = $9/month, gross margin = 70%:
-  Payback = $30 / ($9 × 0.70) = $30 / $6.30 = ~4.8 months
+If CAC = $30, ARPU = $9/month, Cost to serve = $1.75/month:
+  Payback = $30 / ($9.00 − $1.75) = $30 / $7.25 = ~4.1 months
+
+Note: Some teams use gross margin as a proxy for (ARPU − Cost to Serve).
+      Use actual cost to serve when available — it is more precise.
+      See analytics/04-cost-to-serve.md for the full cost to serve methodology.
 
 Healthy benchmark (B2C): < 6 months payback
 Acceptable: 6–12 months
@@ -221,6 +225,32 @@ LTV:CAC ratio:
 ```
 
 **LTV by segment is more useful than blended LTV.** Annual subscribers have dramatically higher LTV than monthly subscribers (lower churn rate, higher average lifetime). Tracking LTV by plan type guides your acquisition investment decisions.
+
+**Important caveats on LTV:CAC:**
+LTV:CAC is a useful directional ratio, but it is an incomplete unit economics metric on its own:
+- LTV is based on assumed future churn — small changes in the churn rate assumption produce large LTV swings (e.g., 3% vs 4% monthly churn = $300 vs $225 LTV at $9 ARPC)
+- LTV:CAC does not capture *when* the CAC is recovered — a 4:1 ratio with a 24-month payback is far worse than a 2:1 ratio with a 4-month payback
+- Neither metric accounts for ongoing cost to serve beyond gross margin
+
+**Preferred primary unit economics metrics:** Net Contribution Margin and Payback Period (see `analytics/04-cost-to-serve.md`):
+
+```
+Net Contribution Margin = Revenue − Cost to Serve − CAC
+
+Payback Period = CAC ÷ (ARPU − Cost to Serve per month)
+
+Example:
+  ARPU = $9/month, Cost to serve = $1.75/month, CAC = $30
+  Monthly Net Contribution = $9.00 − $1.75 = $7.25
+  Payback Period = $30 ÷ $7.25 = ~4.1 months
+
+  B2C benchmarks:
+  Excellent:  < 6 months payback
+  Healthy:    6–12 months
+  Concerning: > 12 months
+```
+
+Use LTV:CAC as a supporting metric with explicit assumptions stated. Use Net Contribution Margin and Payback Period as the primary decision metrics.
 
 ---
 
@@ -391,7 +421,9 @@ Track metrics by geography if you have significant multi-market volume. A blende
 | Cohort retention | Quarterly | Product, growth |
 | Payment failure rate | Weekly | Engineering, ops |
 | Dispute rate | Weekly | Finance, ops |
-| LTV:CAC by channel | Monthly | Growth, marketing |
+| Net Contribution Margin | Quarterly | Founders, finance |
+| Payback Period by channel | Monthly | Growth, marketing |
+| LTV:CAC by channel (with stated assumptions) | Quarterly | Founders, investors |
 
 **Avoid metric proliferation:** A dashboard with 40 metrics encourages cherry-picking the good ones and ignoring the bad. The 6–8 metrics above cover the health of the full subscription lifecycle. Add others only when a specific decision requires a specific measurement.
 

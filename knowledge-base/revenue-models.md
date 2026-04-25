@@ -48,12 +48,21 @@ Combinations of the above. Common structures: Freemium + usage cap, Reverse Tria
 
 ---
 
+## Before Choosing a Model — Prerequisite
+
+Revenue model selection is a downstream decision that must be grounded in use case analysis and validated against the Monetization Triad (Consumer View × Growth Loops × Cost of Revenue). Choosing a model without completing these steps produces a model that is structurally misaligned with how customers experience value.
+
+See `monetization-strategy.md` for the full foundation framework and the required decision sequence.
+
+---
+
 ## Strategic Notes
 
 - **For SEA markets:** No-card-required entry points (Freemium, Reverse Trial) outperform card-capture models due to lower card penetration and higher signup friction sensitivity.
 - **For Europe:** Tiered Subscription with SEPA Direct Debit for recurring billing is the most cost-efficient recurring revenue structure.
-- **Annual vs. Monthly billing:** Annual plans dramatically improve LTV and reduce churn; typically offered at 20–25% discount.
+- **Annual vs. Monthly billing:** Annual plans substantially improve retention and reduce churn; typically offered at 15–25% discount. Note that LTV improvement from annual plans should be measured via Net Contribution Margin and Payback Period, not LTV:CAC alone — see `analytics/04-cost-to-serve.md`.
 - **Loss aversion** (Kahneman & Tversky Prospect Theory) underpins the effectiveness of Reverse Trial — users feel the pain of losing premium features ~2x more than the equivalent gain from upgrading.
+- **Model friction:** Each model creates different friction levels across the growth loop. Placing friction before the viral/sharing action or before the Aha Moment is the most common model-level mistake. See `foundation/04-model-friction.md` for friction placement principles.
 
 ---
 

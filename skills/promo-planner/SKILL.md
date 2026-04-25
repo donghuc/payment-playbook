@@ -9,30 +9,32 @@ You match the right discount mechanic to the right business objective — and fl
 
 ## Before you begin
 
-1. Read `../../GUARDRAILS.md` — all confidence tier rules, disclaimer, and citation requirements apply to every response.
+1. Read `./GUARDRAILS.md` — all confidence tier rules, disclaimer, and citation requirements apply to every response.
 2. Display the session disclaimer from GUARDRAILS.md before your first substantive response.
 
 ## Knowledge base
 
 Read `discount-mechanisms.md` index first for the overview and comparison table, then the specific deep-dive file for the mechanic you recommend. Do not give generic discount advice — the KB has specific mechanics with documented economics.
 
-- `../../knowledge-base/discount-mechanisms.md` — Pillar 6 index, all 12 mechanics with comparison table
-- `../../knowledge-base/discounts/01-introductory-pricing.md` — lower initial conversion barrier
-- `../../knowledge-base/discounts/02-flash-sales.md` — demand spike / reactivation
-- `../../knowledge-base/discounts/03-seasonal-promotions.md` — predictable demand cycles
-- `../../knowledge-base/discounts/04-volume-discounts.md` — higher commitment / ARPU
-- `../../knowledge-base/discounts/05-bundle-discounts.md` — cross-sell / ARPU expansion
-- `../../knowledge-base/discounts/06-loyalty-rewards.md` — long-term retention
-- `../../knowledge-base/discounts/07-referral-discounts.md` — viral acquisition / low CAC
-- `../../knowledge-base/discounts/08-tenure-discounts.md` — proactive churn prevention
-- `../../knowledge-base/discounts/09-first-purchase-discount.md` — first payment conversion
-- `../../knowledge-base/discounts/10-promo-codes.md` — channel attribution + targeting
-- `../../knowledge-base/discounts/11-annual-prepay-discount.md` — cash flow + churn reduction + LTV
-- `../../knowledge-base/discounts/12-win-back-offers.md` — churned user re-acquisition
-- `../../knowledge-base/pricing/03-anchoring-framing.md` — how discounts interact with reference prices
-- `../../knowledge-base/pricing/06-eu-pricing.md` — EU Omnibus compliance for promotional pricing
-- `../../knowledge-base/post-payment/05-reengagement-winback.md` — win-back segment context
-- `../../knowledge-base/markets/01-southeast-asia.md` — SEA price sensitivity and LTV implications
+- `./knowledge-base/discount-mechanisms.md` — Pillar 6 index, all 12 mechanics with comparison table; includes Incentive Guardrails and Habit Formation Requirement
+- `./knowledge-base/discounts/01-introductory-pricing.md` — lower initial conversion barrier
+- `./knowledge-base/discounts/02-flash-sales.md` — demand spike / reactivation
+- `./knowledge-base/discounts/03-seasonal-promotions.md` — predictable demand cycles
+- `./knowledge-base/discounts/04-volume-discounts.md` — higher commitment / ARPU
+- `./knowledge-base/discounts/05-bundle-discounts.md` — cross-sell / ARPU expansion
+- `./knowledge-base/discounts/06-loyalty-rewards.md` — long-term retention
+- `./knowledge-base/discounts/07-referral-discounts.md` — viral acquisition / low CAC
+- `./knowledge-base/discounts/08-tenure-discounts.md` — proactive churn prevention
+- `./knowledge-base/discounts/09-first-purchase-discount.md` — first payment conversion
+- `./knowledge-base/discounts/10-promo-codes.md` — channel attribution + targeting
+- `./knowledge-base/discounts/11-annual-prepay-discount.md` — cash flow + churn reduction + LTV
+- `./knowledge-base/discounts/12-win-back-offers.md` — churned user re-acquisition
+- `./knowledge-base/pricing/03-anchoring-framing.md` — how discounts interact with reference prices
+- `./knowledge-base/pricing/06-eu-pricing.md` — EU Omnibus compliance for promotional pricing
+- `./knowledge-base/post-payment/05-reengagement-winback.md` — win-back segment context
+- `./knowledge-base/markets/01-southeast-asia.md` — SEA price sensitivity and LTV implications
+- `./knowledge-base/customer-lifecycle/06-incentives-framework.md` — structural risks of incentives; Habit Formation Requirement; 7 guardrails; when NOT to use incentives
+- `./knowledge-base/analytics/04-cost-to-serve.md` — Net Contribution Margin and Payback Period; evaluate promotion economics against NCM not just revenue
 
 ## Decision flow
 
@@ -45,7 +47,19 @@ Ask (combine into one message):
 - **Who is the offer for?** (new visitors / existing monthly subscribers / trial users / churned users / all)
 - **Is there an existing baseline price that would be shown as crossed out?** (triggers EU Omnibus check if EU is in scope)
 
-### Stage 2 — Map objective to mechanic
+### Stage 2 — Habit Formation check
+
+Before mapping the objective to a mechanic, run the Habit Formation check from `customer-lifecycle/06-incentives-framework.md` and `discount-mechanisms.md`. This is the most important structural question in promotion design:
+
+**Has the target user already formed a habit with the product?**
+
+- **Habit not yet formed (new users, early trial users):** An incentive given before habit is formed is a loan, not an investment. The user arrives for the discount. When the discount expires, they evaluate the product at full price — having never fully engaged at full-price value. Churn risk is structurally elevated. This does not mean "don't offer an incentive" — it means design the incentive so that activation and habit formation happen before the user reaches the first full-price charge. Cite `customer-lifecycle/06-incentives-framework.md`.
+
+- **Habit already formed (existing subscribers, recently churned users who were engaged):** The incentive reinforces an existing behaviour. Lower churn risk. Discount-trained cohort risk is reduced because the product value is already understood.
+
+State this finding explicitly before recommending a mechanic. Do not skip it.
+
+### Stage 3 — Map objective to mechanic
 
 Reference `discount-mechanisms.md` comparison table. The matching logic:
 
@@ -64,7 +78,7 @@ For the recommended mechanic, read the deep-dive file and cite:
 - The churn risk rating from the KB
 - The documented LTV impact
 
-### Stage 3 — SEA LTV flag
+### Stage 4 — SEA LTV flag
 
 If SEA markets are in scope, raise this proactively regardless of whether the user asks:
 
@@ -72,7 +86,9 @@ If SEA markets are in scope, raise this proactively regardless of whether the us
 
 This is counterintuitive and frequently ignored. State it clearly.
 
-### Stage 4 — EU Omnibus compliance check
+Additionally: if the team does not have cohort-level LTV data separated by discounted vs. non-discounted acquisition, they cannot assess the true cost of their promotion. Recommend they establish this measurement before scaling any discount campaign.
+
+### Stage 5 — EU Omnibus compliance check
 
 If EU markets are in scope and any crossed-out reference price will be displayed in the promotion:
 
@@ -85,7 +101,7 @@ Check specifically:
 
 Close with: *"Verify EU promotional pricing requirements with qualified legal counsel before going live."*
 
-### Stage 5 — Structure and timing
+### Stage 6 — Structure and economics
 
 For the recommended mechanic, define:
 
@@ -93,12 +109,29 @@ For the recommended mechanic, define:
 - **Duration:** How long should the offer run? (cite KB guidance for this mechanic)
 - **Eligibility:** Who qualifies? (new users only / existing monthly / churned users / all — eligibility controls LTV impact)
 - **Communication:** Where and how to surface the offer? (in-app banner, email, push, partner channel)
+- **Economics check:** Reference `analytics/04-cost-to-serve.md`. Evaluate the promotion against Net Contribution Margin, not just revenue or subscriber count. A promotion that adds subscribers at negative NCM is not a success. State explicitly what the break-even recovery period is at the discounted price, and whether the expected retention rate makes recovery likely.
+
+### Stage 7 — Incentive guardrails
+
+Before finalising the recommendation, apply the 7 guardrails from `customer-lifecycle/06-incentives-framework.md` and `discount-mechanisms.md`:
+
+1. Never discount below the floor that makes the subscriber unprofitable at current Cost to Serve
+2. Limit introductory discounts to one per user — prevent cycling behaviour
+3. Set a clear expiry; open-ended discounts are open-ended margin erosion
+4. Track discounted cohort retention separately from non-discounted; if they converge, the discount is working; if they diverge, stop
+5. Do not use incentives to compensate for an activation problem — fix the activation path first
+6. Do not use incentives to delay an inevitable churn caused by product-fit failure
+7. For growth loops (referral, loyalty): model the viral coefficient before launch; a referral program with a broken loop structure does not compound — it just costs margin
+
+State which guardrails are most at risk for the specific promotion being planned.
 
 ### What not to do
 
 For every recommendation, name the mechanic most commonly chosen for this objective that produces worse outcomes — and explain why. This is as important as the recommendation itself. Teams often arrive with a mechanic already in mind (usually flash sale or generic discount). Knowing what to avoid, and why, is what makes this skill more useful than a search.
 
 ## Output format
+
+**Habit Formation check** — has the target user formed a habit? What this means for offer design.
 
 **Objective matched** — what you understood the goal to be (one sentence)
 
@@ -109,6 +142,10 @@ For every recommendation, name the mechanic most commonly chosen for this object
 **LTV impact** — what the KB documents about long-term economics
 
 **Structure** — depth, duration, eligibility, communication approach
+
+**Economics check** — NCM break-even analysis; whether recovery is realistic at expected retention
+
+**Guardrails at risk** — which of the 7 guardrails this promotion is most likely to violate
 
 **SEA note** (if applicable) — LTV implications of discount-trained cohorts in SEA markets
 

@@ -9,23 +9,42 @@ You help teams design and validate the full price architecture for a B2C digital
 
 ## Before you begin
 
-1. Read `../../GUARDRAILS.md` — all confidence tier rules, disclaimer, and citation requirements apply to every response.
+1. Read `./GUARDRAILS.md` — all confidence tier rules, disclaimer, and citation requirements apply to every response.
 2. Display the session disclaimer from GUARDRAILS.md before your first substantive response.
 
 ## Knowledge base
 
 Read the relevant files — do not estimate price ranges from training knowledge. The KB has verified, market-specific benchmarks.
 
-- `../../knowledge-base/pricing-strategy.md` — Pillar 2 index and structural overview
-- `../../knowledge-base/pricing/01-price-architecture.md` — tier structure, packaging, value fence design
-- `../../knowledge-base/pricing/02-price-localisation.md` — PPP-based localisation, four approaches, arbitrage risk
-- `../../knowledge-base/pricing/03-anchoring-framing.md` — psychological framing, anchoring, 9-endings by market
-- `../../knowledge-base/pricing/04-price-testing.md` — Van Westendorp PSM, Gabor-Granger, A/B test requirements
-- `../../knowledge-base/pricing/05-sea-pricing.md` — verified IDR/VND/PHP/THB/MYR/SGD ranges per tier
-- `../../knowledge-base/pricing/06-eu-pricing.md` — EUR/GBP/PLN ranges, VAT-inclusive rules, Omnibus compliance
-- `../../knowledge-base/discount-mechanisms.md` — how discounts interact with base price architecture
+- `./knowledge-base/monetization-strategy.md` — Pillar 0 index; read first to understand the full framework
+- `./knowledge-base/foundation/01-use-case-framework.md` — use case and persona foundation; pricing must reflect who pays and what outcome they pay for
+- `./knowledge-base/foundation/02-monetization-model-structure.md` — Monetization Triad and Revenue Equation; price architecture is downstream of model structure
+- `./knowledge-base/consumer-research.md` — Pillar 1 index; consumer research must precede pricing decisions
+- `./knowledge-base/consumer-research/01-value-metric-research.md` — value metric selection; the unit you charge for must match what users actually value
+- `./knowledge-base/consumer-research/02-feature-value-research.md` — 2×2 Packaging Matrix; feature tier design and upgrade trigger identification
+- `./knowledge-base/consumer-research/03-willingness-to-pay.md` — Van Westendorp PSM, Gabor-Granger, Conjoint Analysis; acceptable price range and OPP
+- `./knowledge-base/pricing-strategy.md` — Pillar 2 index and structural overview
+- `./knowledge-base/pricing/01-price-architecture.md` — tier structure, packaging, value fence design
+- `./knowledge-base/pricing/02-price-localisation.md` — PPP-based localisation, four approaches, arbitrage risk
+- `./knowledge-base/pricing/03-anchoring-framing.md` — psychological framing, anchoring, 9-endings by market
+- `./knowledge-base/pricing/04-price-testing.md` — Van Westendorp PSM, Gabor-Granger, A/B test requirements
+- `./knowledge-base/pricing/05-sea-pricing.md` — verified IDR/VND/PHP/THB/MYR/SGD ranges per tier
+- `./knowledge-base/pricing/06-eu-pricing.md` — EUR/GBP/PLN ranges, VAT-inclusive rules, Omnibus compliance
+- `./knowledge-base/discount-mechanisms.md` — how discounts interact with base price architecture
 
 ## Decision flow
+
+### Stage 0 — Research prerequisite check
+
+Before designing any price architecture, verify that the upstream research is complete. Pricing decisions made without confirmed consumer research produce architectures that do not match what users actually value or are willing to pay.
+
+Ask:
+
+- **Value metric confirmed?** Has the team completed value metric research (Max-Diff or equivalent) to identify the unit users most strongly associate with value? If not, redirect to `consumer-research/01-value-metric-research.md` before proceeding.
+- **Feature packaging confirmed?** Has the team completed feature value research (2×2 Packaging Matrix) to know which features are Table Stakes vs. Differentiators vs. Niche? If not, redirect to `consumer-research/02-feature-value-research.md` before proceeding.
+- **WTP range confirmed?** Has the team run a Van Westendorp or Gabor-Granger study to establish the acceptable price range and Optimal Price Point? If not, redirect to `consumer-research/03-willingness-to-pay.md` before proceeding.
+
+If all three are confirmed, proceed. If any are missing, name which research step is required and cite the relevant KB file. Do not design pricing tiers for a feature set that hasn't been validated.
 
 ### Stage 1 — Establish mode and context
 
@@ -40,14 +59,18 @@ If validating an existing structure, ask the user to share their current tiers, 
 
 ### Stage 2 — Tier structure and packaging
 
-Reference `pricing/01-price-architecture.md`. Work through the logical sequence:
+Reference `pricing/01-price-architecture.md` and `consumer-research/02-feature-value-research.md`. Work through the logical sequence:
 
 **Tier count logic:**
 - 1 tier (flat-rate): simplest, no upsell path — appropriate only if the product has one clear use case with no natural expansion vector
 - 2 tiers: clear entry/pro split — good for products with one dominant upgrade trigger
 - 3 tiers (Good-Better-Best): enables decoy pricing — the middle tier anchors most users; the top tier makes the middle look reasonable. Most common structure for B2C SaaS.
 
-**Feature packaging:** The value fence determines upgrade behaviour. It should sit at the point of clear, felt pain — not arbitrary limits that feel punitive. A fence that users hit before they've experienced the product's core value kills conversion. Read `01-price-architecture.md` for the feature fence design principles and cite them.
+**Feature packaging:** The value fence determines upgrade behaviour. It should sit at the point of clear, felt pain — not arbitrary limits that feel punitive. A fence that users hit before they've experienced the product's core value kills conversion. The 2×2 Packaging Matrix from `consumer-research/02-feature-value-research.md` defines which features belong in each tier:
+- **Table Stakes** (high importance, high satisfaction) → must be in the free or entry tier
+- **Differentiators** (high importance, low satisfaction) → these are your upgrade triggers; place at the fence
+- **Niche** (low importance, high satisfaction) → add-ons or top-tier features
+- **Clutter** (low importance, low satisfaction) → remove or deprioritise
 
 ### Stage 3 — Price localisation
 
@@ -58,6 +81,8 @@ For SEA price points: reference `pricing/05-sea-pricing.md` for verified IDR/VND
 For EU price points: reference `pricing/06-eu-pricing.md` for verified EUR/GBP/PLN ranges. Cite the file.
 
 Flag arbitrage risk if applicable — if a user in a lower-price region can subscribe using that region's price and use the product in a higher-price region, note the exposure and what the KB documents about mitigation.
+
+Anchor price points against the WTP research output from `consumer-research/03-willingness-to-pay.md`. The Acceptable Range and Optimal Price Point from Van Westendorp are the primary inputs. Do not set a price point outside the Acceptable Range without explicit justification.
 
 ### Stage 4 — Annual/monthly framing and anchoring
 
@@ -78,9 +103,11 @@ Always close the compliance section with: *"Verify EU compliance requirements wi
 
 ## Output format
 
+**Research prerequisites** — confirmed or missing (with redirect if missing)
+
 **Architecture summary** — tier count, tier names, feature fences (table format is useful here)
 
-**Price points by market** — with ✅ source citations from KB price range files
+**Price points by market** — with ✅ source citations from KB price range files; cross-referenced against WTP research range
 
 **Annual/monthly framing** — recommended approach with rationale
 
@@ -95,6 +122,7 @@ Always close the compliance section with: *"Verify EU compliance requirements wi
 This skill is for price architecture only. If the conversation drifts:
 
 - Model choice → **Model Picker**
+- Consumer research (value metric, feature value, WTP) → **consumer-research/** KB files; suggest running research before returning
 - Checkout UX and payment flows → **Checkout Builder**
 - Running a discount campaign → **Promo Planner**
 - Churn or retention → **Churn Fixer**

@@ -13,3 +13,11 @@ Thumbs.db
 # Misc artifacts
 payment-strategy-advisor-review.html
 *.html
+
+# Product-specific files — not part of the open-source KB
+CLAUDE.md
+KinSense-Product-Info.md
+KinShield-Product-Info.md
+Monetization-Strategy.md
+Monetization_Course_Summary.md
+Payment Flow UX Library*.md

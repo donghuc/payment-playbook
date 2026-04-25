@@ -12,6 +12,8 @@ Price testing is the discipline of validating that hypothesis empirically, itera
 
 This file covers four methods: qualitative willingness-to-pay research (what to charge before you have traffic), A/B testing (what to charge when you have traffic), cohort analysis (how to measure the long-term impact of price changes), and competitive benchmarking (where to start before any data exists).
 
+> **Note on sequencing:** WTP research (Van Westendorp, Gabor-Granger, Conjoint) should be run *after* completing value metric research (Max-Diff on value metric) and feature value research (Max-Diff on packaging). Pricing a product before the value metric and tier structure are validated produces WTP data that may not apply to the final product. See `consumer-research/03-willingness-to-pay.md` for the full WTP methodology including segmentation requirements and geographic variation. The summaries below are operational references; the Consumer Research section is the canonical methodology.
+
 ---
 
 ## Method 1 — Competitive Benchmarking (Pre-Launch Baseline)

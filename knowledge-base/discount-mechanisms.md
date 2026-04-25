@@ -99,12 +99,35 @@ Every discount is a permanent signal about your product's actual price floor. Ru
 Introductory pricing, first-purchase discounts, and flash sales all create anchors. Before deploying them, be clear on the upgrade path: can you credibly walk users from the discounted price to full price, and why will they accept that?
 
 ### Market sensitivity
-- **SEA:** Price sensitivity is high; discounts have outsized conversion impact. But discount-trained cohorts in SEA also show lower LTV. Annual prepay discounts and referral mechanics (especially e-wallet cashback framing) tend to outperform flash sales in LTV terms.
+- **SEA:** Price sensitivity is high; discounts have outsized conversion impact. But discount-trained cohorts in SEA also show lower LTV — this is empirically established. Annual prepay discounts and referral mechanics (especially e-wallet cashback framing) tend to outperform flash sales in LTV terms. Measure discount-cohort LTV vs. organic-cohort LTV separately; do not blend.
 - **Europe:** Seasonal promotions and annual prepay discounts perform well. GDPR and EU consumer law require clear disclosure of the pre-discount "reference price" (EU Omnibus Directive) — showing a crossed-out price requires that price to have been the actual price for at least 30 days prior.
 - **Global:** Promo codes and referral discounts scale well globally with minimal localisation overhead.
 
 ### Interaction with revenue models
 Discount mechanisms are not revenue models — they are modifiers applied to the base revenue model. See each deep-dive for a detailed mapping of which revenue models each mechanism pairs with and which combinations create conflicts.
+
+---
+
+## Incentive Guardrails
+
+Discounts and incentives carry long-term structural risks that compound at scale. These guardrails should be applied to every incentive program:
+
+**The Habit Formation Requirement — the most important rule:**
+An incentive that brings a customer in before habit is formed is a loan, not an investment. The customer will leave when the incentive ends unless habitual usage is established first. Never remove an introductory discount without first confirming that the cohort's usage pattern is habitual (core action performed at natural frequency for 30+ days).
+
+**Structural guardrails:**
+
+| Guardrail | Rule |
+|---|---|
+| Sunset all introductory discounts | Define a clear expiry at programme launch. Do not extend indefinitely — it converts a temporary discount into the real price. |
+| Measure discount-cohort LTV separately | If discount-acquired cohorts retain at < 70% of organic cohort LTV, the incentive is net-negative. Restructure or discontinue. |
+| Limit win-back offers per churned user | Maximum 2 win-back offers per churned customer. After 2 declines, suppress from future campaigns — additional offers are ignored or resented. |
+| Never disclose win-back timing | If customers learn they'll receive a 30-day post-churn offer, they will plan around it. Vary timing. Do not publicise the programme. |
+| Do not apply discounts to firm churners | Customers who have expressed firm cancellation intent should not receive a discount offer — it validates the churn decision and produces no meaningful retention benefit. |
+| Track incentive cost as a primary metric | Incentive cost as % of gross revenue should appear on the monthly metrics dashboard alongside MRR, churn, and CAC. |
+| EU Omnibus compliance | A crossed-out "original price" in EU markets must have been the actual price for 30+ consecutive days prior. Fabricated reference prices are illegal under EU consumer law. |
+
+For the full incentives framework including risk analysis and design-by-objective mapping, see `customer-lifecycle/06-incentives-framework.md`.
 
 ---
 
